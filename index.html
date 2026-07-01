@@ -13,32 +13,21 @@
   <link rel="apple-touch-icon" href="./pw_icon.png">
   <style>
     * { box-sizing: border-box; }
-    html, body { width: 100%; min-height: 100%; margin: 0; background: #f5f8fc; }
-    body { display: grid; place-items: center; padding: 24px; color: #17324d; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif; text-align: center; }
-    main { width: min(520px, 100%); padding: 32px 20px; border-radius: 20px; background: white; box-shadow: 0 14px 35px rgba(28,50,74,.12); }
-    img { width: 112px; height: 112px; border-radius: 22px; object-fit: cover; }
-    h1 { margin: 18px 0 8px; font-size: 28px; }
-    p { margin: 0 0 22px; font-size: 18px; }
-    a { display: block; min-height: 64px; padding: 17px 18px; border-radius: 14px; background: #17324d; color: white; font-size: 21px; font-weight: 800; text-decoration: none; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #f5f8fc; }
+    iframe { display: block; width: 100%; height: 100%; border: 0; background: #f5f8fc; }
+    .fallback { position: fixed; z-index: 10; right: 8px; bottom: 8px; padding: 7px 10px; border-radius: 9px; background: rgba(23,50,77,.82); color: white; font: 700 13px/1.3 sans-serif; text-decoration: none; }
   </style>
 </head>
 <body>
-  <main>
-    <img src="./pw_icon.png" alt="PW申し込みアプリ">
-    <h1>PW申し込みアプリ</h1>
-    <p id="launchMessage">アプリを開いています…</p>
-    <a id="openApp" href="https://script.google.com/macros/s/AKfycbx462oP77DQ1OCQgkOlElPez7GYJXqGLNbzVJZEQlL6E2cBp-DXIvUIYkWA3cmczNdijA/exec">アプリを開く</a>
-  </main>
+  <iframe
+    title="PW申し込みアプリ"
+    src="https://script.google.com/macros/s/AKfycbx462oP77DQ1OCQgkOlElPez7GYJXqGLNbzVJZEQlL6E2cBp-DXIvUIYkWA3cmczNdijA/exec"
+    allow="clipboard-write"
+  ></iframe>
+  <a class="fallback" href="https://script.google.com/macros/s/AKfycbx462oP77DQ1OCQgkOlElPez7GYJXqGLNbzVJZEQlL6E2cBp-DXIvUIYkWA3cmczNdijA/exec" target="_top">表示できない場合</a>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
-    }
-    const appUrl = document.getElementById('openApp').href;
-    const isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-    if (isInstalled) {
-      window.setTimeout(() => window.location.replace(appUrl), 350);
-    } else {
-      document.getElementById('launchMessage').textContent = '先にブラウザの「アプリをインストール」または「ホーム画面に追加」を行ってください。';
     }
   </script>
 </body>
