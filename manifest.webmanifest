@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "PW申し込みアプリ",
+  "short_name": "PW申し込み",
+  "description": "PWの予定確認・参加申し込みアプリ",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f8fc",
+  "theme_color": "#17324d",
+  "icons": [
+    {
+      "src": "./pw_icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
