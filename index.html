@@ -13,23 +13,28 @@
   <link rel="apple-touch-icon" href="./pw_icon.png">
   <style>
     * { box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #f5f8fc; }
-    iframe { display: block; width: 100%; height: 100%; border: 0; background: #f5f8fc; }
-    .fallback { position: fixed; inset: auto 12px 12px; z-index: 2; text-align: center; }
-    .fallback a { display: inline-block; padding: 10px 14px; border-radius: 10px; background: #17324d; color: white; font: 700 16px/1.4 sans-serif; text-decoration: none; }
+    html, body { width: 100%; min-height: 100%; margin: 0; background: #f5f8fc; }
+    body { display: grid; place-items: center; padding: 24px; color: #17324d; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif; text-align: center; }
+    main { width: min(520px, 100%); padding: 32px 20px; border-radius: 20px; background: white; box-shadow: 0 14px 35px rgba(28,50,74,.12); }
+    img { width: 112px; height: 112px; border-radius: 22px; object-fit: cover; }
+    h1 { margin: 18px 0 8px; font-size: 28px; }
+    p { margin: 0 0 22px; font-size: 18px; }
+    a { display: block; min-height: 64px; padding: 17px 18px; border-radius: 14px; background: #17324d; color: white; font-size: 21px; font-weight: 800; text-decoration: none; }
   </style>
 </head>
 <body>
-  <iframe
-    title="PW申し込みアプリ"
-    src="https://script.google.com/macros/s/AKfycbx462oP77DQ1OCQgkOlElPez7GYJXqGLNbzVJZEQlL6E2cBp-DXIvUIYkWA3cmczNdijA/exec"
-    allow="clipboard-write"
-  ></iframe>
-  <noscript class="fallback"><a href="https://script.google.com/macros/s/AKfycbx462oP77DQ1OCQgkOlElPez7GYJXqGLNbzVJZEQlL6E2cBp-DXIvUIYkWA3cmczNdijA/exec">アプリを開く</a></noscript>
+  <main>
+    <img src="./pw_icon.png" alt="PW申し込みアプリ">
+    <h1>PW申し込みアプリ</h1>
+    <p>アプリを開いています…</p>
+    <a id="openApp" href="https://script.google.com/macros/s/AKfycbx462oP77DQ1OCQgkOlElPez7GYJXqGLNbzVJZEQlL6E2cBp-DXIvUIYkWA3cmczNdijA/exec">開かない場合はこちら</a>
+  </main>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
     }
+    const appUrl = document.getElementById('openApp').href;
+    window.setTimeout(() => window.location.replace(appUrl), 350);
   </script>
 </body>
 </html>
