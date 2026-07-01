@@ -365,7 +365,7 @@
       google.script.run.withSuccessHandler(resolve).withFailureHandler(err => reject(new Error(err.message || String(err))))[name](...args);
     });
 
-    const UI_SCALE_KEY = 'pw-ui-scale';
+    const UI_SCALE_KEY = 'pw-ui-scale-v2';
     let uiScaleFrame = 0;
     let pendingUiScale = 100;
     initializeUiScale();
@@ -398,7 +398,8 @@
 
     function applyUiScale(scale) {
       const largeLayout = window.matchMedia('(max-width: 1000px), (hover: none), (pointer: coarse)').matches;
-      const baseSize = largeLayout ? 34 : 18;
+      // 旧版の65%相当を、新版では100%の標準サイズとする。
+      const baseSize = largeLayout ? 22 : 12;
       document.documentElement.style.fontSize = `${baseSize * scale / 100}px`;
       $('uiScaleValue').textContent = `${scale}%`;
     }
