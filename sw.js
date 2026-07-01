@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pw-app-shell-v4';
+const CACHE_NAME = 'pw-app-shell-v5';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './pw_icon.png'];
 
 self.addEventListener('install', event => {
