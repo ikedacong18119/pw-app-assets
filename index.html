@@ -26,15 +26,20 @@
   <main>
     <img src="./pw_icon.png" alt="PW申し込みアプリ">
     <h1>PW申し込みアプリ</h1>
-    <p>アプリを開いています…</p>
-    <a id="openApp" href="https://script.google.com/macros/s/AKfycbx462oP77DQ1OCQgkOlElPez7GYJXqGLNbzVJZEQlL6E2cBp-DXIvUIYkWA3cmczNdijA/exec">開かない場合はこちら</a>
+    <p id="launchMessage">アプリを開いています…</p>
+    <a id="openApp" href="https://script.google.com/macros/s/AKfycbx462oP77DQ1OCQgkOlElPez7GYJXqGLNbzVJZEQlL6E2cBp-DXIvUIYkWA3cmczNdijA/exec">アプリを開く</a>
   </main>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
     }
     const appUrl = document.getElementById('openApp').href;
-    window.setTimeout(() => window.location.replace(appUrl), 350);
+    const isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    if (isInstalled) {
+      window.setTimeout(() => window.location.replace(appUrl), 350);
+    } else {
+      document.getElementById('launchMessage').textContent = '先にブラウザの「アプリをインストール」または「ホーム画面に追加」を行ってください。';
+    }
   </script>
 </body>
 </html>
